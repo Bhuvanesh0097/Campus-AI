@@ -13,11 +13,7 @@ app = FastAPI(
 # CORS — allow frontend origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",       # Vite dev
-        "http://localhost:3000",
-        "https://*.netlify.app",       # Production
-    ],
+    allow_origins=["*"],             # Allow all origins (safe with JWT auth)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
