@@ -6,7 +6,7 @@ from jose import jwt, JWTError
 security = HTTPBearer()
 
 SUPABASE_JWT_SECRET = os.getenv("SUPABASE_JWT_SECRET", "")
-ALGORITHMS = ["HS256"]
+ALGORITHMS = ["HS256", "HS384", "HS512"]
 
 
 async def get_current_user(
