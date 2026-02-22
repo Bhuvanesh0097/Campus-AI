@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+supabase
+python-jose[cryptography]
+google-generativeai
+PyPDF2
+python-multipart
+httpx
