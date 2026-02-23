@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import chat, study_buddy, placement, feedback, analytics
-import os
 
 app = FastAPI(
     title="AI Chatbot API",
@@ -14,7 +13,7 @@ app = FastAPI(
 # CORS — allow frontend origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],             # Allow all origins (safe with JWT auth)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,13 +22,7 @@ app.add_middleware(
 
 @app.get("/api/health")
 async def health_check():
-    groq = os.getenv("GROQ_API_KEY", "")
-    return {
-        "status": "ok",
-        "message": "AI Chatbot API is running",
-        "groq_configured": bool(groq),
-        "groq_key_prefix": groq[:8] + "..." if len(groq) > 8 else "NOT SET",
-    }
+    return {"status": "ok", "message": "AI Chatbot API is running"}
 
 
 # Register routers
