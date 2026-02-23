@@ -4,7 +4,6 @@ supabase
 python-jose[cryptography]
 python-dotenv
 PyJWT[crypto]
-google-generativeai
 PyPDF2
 python-multipart
 httpx
