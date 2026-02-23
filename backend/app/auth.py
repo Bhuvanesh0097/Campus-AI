@@ -1,12 +1,19 @@
 import os
+from dotenv import load_dotenv
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from jose import jwt, JWTError
 
+load_dotenv()
+
 security = HTTPBearer()
 
 SUPABASE_JWT_SECRET = os.getenv("SUPABASE_JWT_SECRET", "")
-ALGORITHMS = ["HS256", "HS384", "HS512"]
+if not SUPABASE_JWT_SECRET:
+    import warnings
+    warnings.warn("SUPABASE_JWT_SECRET is not set — JWT auth will fail!")
+
+ALGORITHMS = ["HS256"]
 
 
 async def get_current_user(

@@ -2,6 +2,7 @@ fastapi
 uvicorn
 supabase
 python-jose[cryptography]
+python-dotenv
 google-generativeai
 PyPDF2
 python-multipart
