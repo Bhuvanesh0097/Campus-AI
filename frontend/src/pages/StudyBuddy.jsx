@@ -89,7 +89,6 @@ export default function StudyBuddy() {
                     { role: 'assistant', content: res.assistant_message },
                 ]);
             } else {
-                // Fallback to study-specific ask
                 const res = await studyApi.ask(content, selectedMaterial);
                 setMessages((prev) => [
                     ...prev,
@@ -164,8 +163,18 @@ export default function StudyBuddy() {
                 <FileUpload onUpload={handleUpload} loading={uploading} />
 
                 {materials.length > 0 && (
-                    <div className="glass-card" style={{ padding: '16px' }}>
-                        <h3 style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: '12px', color: 'var(--text-secondary)' }}>
+                    <div className="card" style={{ padding: '16px' }}>
+                        <h3
+                            style={{
+                                fontSize: '0.85rem',
+                                fontWeight: 600,
+                                marginBottom: '12px',
+                                color: 'var(--text-secondary)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                            }}
+                        >
                             📚 Your Materials
                         </h3>
                         <div className="materials-list">
@@ -174,6 +183,9 @@ export default function StudyBuddy() {
                                     key={m.id}
                                     className={`material-item ${selectedMaterial === m.id ? 'active' : ''}`}
                                     onClick={() => setSelectedMaterial(m.id)}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => e.key === 'Enter' && setSelectedMaterial(m.id)}
                                 >
                                     <HiOutlineDocumentText className="mat-icon" />
                                     <span className="mat-name">{m.file_name}</span>
@@ -181,6 +193,7 @@ export default function StudyBuddy() {
                                         className="mat-delete"
                                         onClick={(e) => handleDeleteMaterial(m.id, e)}
                                         title="Delete"
+                                        aria-label={`Delete ${m.file_name}`}
                                     >
                                         <HiOutlineTrash />
                                     </button>
@@ -192,11 +205,19 @@ export default function StudyBuddy() {
 
                 {selectedMaterial && (
                     <div className="action-buttons">
-                        <button className="btn btn-secondary btn-sm" onClick={handleSummarize} disabled={loading}>
+                        <button
+                            className="btn btn-secondary btn-sm"
+                            onClick={handleSummarize}
+                            disabled={loading}
+                        >
                             <HiOutlineListBullet /> Summarize
                         </button>
-                        <button className="btn btn-secondary btn-sm" onClick={handleQuiz} disabled={loading}>
-                            <HiOutlineAcademicCap /> Quiz
+                        <button
+                            className="btn btn-secondary btn-sm"
+                            onClick={handleQuiz}
+                            disabled={loading}
+                        >
+                            <HiOutlineAcademicCap /> Quiz Me
                         </button>
                     </div>
                 )}
@@ -207,8 +228,9 @@ export default function StudyBuddy() {
                     messages={messages}
                     onSendMessage={handleSendMessage}
                     loading={loading}
-                    placeholder="Ask about your study materials..."
-                    emptyMessage="Upload a PDF to get started! I can answer questions, summarize, and generate quizzes."
+                    placeholder="Ask about your study materials… I'm here to help! 📖"
+                    emptyMessage="Upload a PDF to get started! I can answer questions, summarize, and generate quizzes for you."
+                    emptyIcon="📚"
                 />
             </div>
         </div>

@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
-from app.auth import require_admin
+from app.auth import get_current_user
 from app.database import get_supabase
 
 router = APIRouter()
 
 
 @router.get("/summary")
-async def get_analytics_summary(user: dict = Depends(require_admin)):
-    """Get feedback analytics summary (admin only)."""
+async def get_analytics_summary(user: dict = Depends(get_current_user)):
+    """Get feedback analytics summary."""
     db = get_supabase()
 
     # Get all feedback
@@ -60,8 +60,8 @@ async def get_analytics_summary(user: dict = Depends(require_admin)):
 
 
 @router.get("/sentiment")
-async def get_sentiment_breakdown(user: dict = Depends(require_admin)):
-    """Get sentiment analysis breakdown (admin only)."""
+async def get_sentiment_breakdown(user: dict = Depends(get_current_user)):
+    """Get sentiment analysis breakdown."""
     db = get_supabase()
     result = db.table("feedback_responses").select("sentiment, category, rating, created_at").execute()
     data = result.data or []
@@ -79,8 +79,8 @@ async def get_sentiment_breakdown(user: dict = Depends(require_admin)):
 
 
 @router.get("/ratings-over-time")
-async def get_ratings_over_time(user: dict = Depends(require_admin)):
-    """Get average ratings grouped by date (admin only)."""
+async def get_ratings_over_time(user: dict = Depends(get_current_user)):
+    """Get average ratings grouped by date."""
     db = get_supabase()
     result = (
         db.table("feedback_responses")

@@ -86,14 +86,12 @@ export default function PlacementPrep() {
                 ]);
             } else if (mode === 'resume') {
                 if (resumeUploaded) {
-                    // Ask questions about the uploaded resume
                     const res = await placementApi.resumeAsk(content);
                     setMessages((prev) => [
                         ...prev,
                         { role: 'assistant', content: res.answer },
                     ]);
                 } else {
-                    // No resume uploaded, give general tips
                     const res = await placementApi.resumeTips(content);
                     setMessages((prev) => [
                         ...prev,
@@ -102,7 +100,6 @@ export default function PlacementPrep() {
                 }
             } else if (mode === 'interview') {
                 if (currentQuestion) {
-                    // User is answering a question
                     const res = await placementApi.mockInterview(currentQuestion, content);
                     setMessages((prev) => [
                         ...prev,
@@ -110,7 +107,6 @@ export default function PlacementPrep() {
                     ]);
                     setCurrentQuestion('');
                 } else {
-                    // General chat — use the chat API
                     if (sessionId) {
                         const res = await chatApi.sendMessage(sessionId, content);
                         setMessages((prev) => [
@@ -178,35 +174,44 @@ export default function PlacementPrep() {
     const getPlaceholder = () => {
         switch (mode) {
             case 'aptitude':
-                return 'Enter a topic (e.g., probability, logical reasoning, percentages)...';
+                return 'Enter a topic (e.g., probability, logical reasoning)… 📊';
             case 'resume':
                 return resumeUploaded
-                    ? 'Ask anything about your resume (e.g., "How can I improve my skills section?")...'
-                    : 'Paste your resume text or ask for general tips...';
+                    ? 'Ask anything about your resume… I\'m here to help! 📄'
+                    : 'Paste your resume text or ask for general tips…';
             case 'interview':
                 return currentQuestion
-                    ? 'Type your answer to the question...'
-                    : 'Ask anything about interviews or click "Get Question"...';
+                    ? 'Type your answer… take your time! 💪'
+                    : 'Ask about interviews or click "Get Question"… 🎤';
             default:
-                return 'Type your message...';
+                return "Ask me anything… I'm listening";
         }
     };
 
     const getEmptyMsg = () => {
         switch (mode) {
             case 'aptitude':
-                return 'Enter a topic to generate practice aptitude questions!';
+                return 'Enter a topic to generate practice aptitude questions! Let\'s sharpen those skills 🧠';
             case 'resume':
-                return 'Upload your resume PDF to get a detailed review with mistake detection and tips!';
+                return 'Upload your resume PDF to get a detailed review with tips and improvements!';
             case 'interview':
-                return 'Start a mock interview! Click "Get Question" or ask anything.';
+                return 'Ready for a mock interview? Click "Get Question" or ask anything!';
             default:
                 return 'Select a mode to get started!';
         }
     };
 
+    const getEmptyIcon = () => {
+        switch (mode) {
+            case 'aptitude': return '📊';
+            case 'resume': return '📄';
+            case 'interview': return '🎤';
+            default: return '💬';
+        }
+    };
+
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - var(--header-height) - 48px)', animation: 'fadeIn 0.4s ease' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - var(--navbar-height) - 48px)', animation: 'fadeIn 0.4s ease' }}>
             {/* Mode Tabs */}
             <div className="mode-selector">
                 {modes.map((m) => (
@@ -217,6 +222,7 @@ export default function PlacementPrep() {
                             setMode(m.id);
                             setCurrentQuestion('');
                         }}
+                        id={`mode-${m.id}`}
                     >
                         {m.label}
                     </button>
@@ -230,21 +236,22 @@ export default function PlacementPrep() {
                         className="btn btn-primary btn-sm"
                         onClick={handleGetQuestion}
                         disabled={loading}
+                        id="get-question-btn"
                     >
                         🎯 Get Question
                     </button>
                     {currentQuestion && (
                         <span className="badge badge-primary" style={{ fontSize: '0.75rem' }}>
-                            Answering a question...
+                            Answering a question…
                         </span>
                     )}
                 </div>
             )}
 
             {mode === 'resume' && (
-                <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', gap: '16px', marginBottom: '16px', flex: 1, minHeight: 0 }}>
                     {/* Resume Upload Panel */}
-                    <div style={{ width: '320px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ width: '320px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '12px', overflowY: 'auto' }}>
                         <FileUpload
                             onUpload={handleResumeUpload}
                             loading={uploadingResume}
@@ -254,7 +261,7 @@ export default function PlacementPrep() {
                         />
 
                         {resumeUploaded && (
-                            <div className="glass-card" style={{ padding: '14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <div className="card" style={{ padding: '14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                                 <HiOutlineDocumentCheck style={{ fontSize: '1.4rem', color: 'var(--success)' }} />
                                 <div>
                                     <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--success)' }}>
@@ -280,8 +287,8 @@ export default function PlacementPrep() {
 
                         {/* Quick question suggestions */}
                         {resumeUploaded && (
-                            <div className="glass-card" style={{ padding: '14px' }}>
-                                <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                            <div className="card" style={{ padding: '14px' }}>
+                                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>
                                     Try asking:
                                 </div>
                                 {[
@@ -304,7 +311,7 @@ export default function PlacementPrep() {
                         )}
                     </div>
 
-                    {/* Chat Area (grows to fill) */}
+                    {/* Chat Area */}
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
                         <ChatWindow
                             messages={messages}
@@ -312,6 +319,7 @@ export default function PlacementPrep() {
                             loading={loading}
                             placeholder={getPlaceholder()}
                             emptyMessage={getEmptyMsg()}
+                            emptyIcon={getEmptyIcon()}
                         />
                     </div>
                 </div>
@@ -325,6 +333,7 @@ export default function PlacementPrep() {
                     loading={loading}
                     placeholder={getPlaceholder()}
                     emptyMessage={getEmptyMsg()}
+                    emptyIcon={getEmptyIcon()}
                 />
             )}
         </div>

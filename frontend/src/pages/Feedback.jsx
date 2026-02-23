@@ -58,13 +58,27 @@ export default function Feedback() {
     if (submitted) {
         return (
             <div className="feedback-page">
-                <div className="glass-card" style={{ padding: '48px', textAlign: 'center' }}>
-                    <div style={{ fontSize: '3.5rem', marginBottom: '16px' }}>
-                        <HiOutlineCheckCircle style={{ color: 'var(--success)' }} />
+                <div className="card" style={{ padding: '48px', textAlign: 'center' }}>
+                    <div style={{ marginBottom: '16px' }}>
+                        <div style={{
+                            width: '72px',
+                            height: '72px',
+                            borderRadius: '50%',
+                            background: 'var(--success-pale)',
+                            border: '2px solid var(--success)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            animation: 'float 3s ease-in-out infinite',
+                        }}>
+                            <HiOutlineCheckCircle style={{ fontSize: '2rem', color: 'var(--success)' }} />
+                        </div>
                     </div>
-                    <h2 style={{ marginBottom: '8px' }}>Thank You!</h2>
-                    <p style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>
-                        Your feedback has been submitted successfully.
+                    <h2 style={{ color: 'var(--text-primary)', marginBottom: '8px' }}>
+                        Thank you so much! 🙏
+                    </h2>
+                    <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: '1.5' }}>
+                        Your feedback means the world to us. We'll use it to make things even better!
                     </p>
                     <button className="btn btn-primary" onClick={resetForm}>
                         Submit Another
@@ -78,11 +92,15 @@ export default function Feedback() {
         <div className="feedback-page">
             <div className="page-header">
                 <h1>📋 Share Your Feedback</h1>
-                <p>Help us improve by sharing your experience</p>
+                <p>Your voice matters — help us improve the campus experience!</p>
             </div>
 
-            <form className="feedback-form glass-card" onSubmit={handleSubmit}>
-                {error && <div className="error-msg" style={{ margin: 0 }}>{error}</div>}
+            <form className="feedback-form card" onSubmit={handleSubmit}>
+                {error && (
+                    <div className="error-msg" style={{ margin: 0 }} role="alert">
+                        <span>⚠️</span> {error}
+                    </div>
+                )}
 
                 {/* Category selector */}
                 <div className="input-group">
@@ -94,6 +112,7 @@ export default function Feedback() {
                                 type="button"
                                 className={`btn ${category === c.value ? 'btn-primary' : 'btn-secondary'} btn-sm`}
                                 onClick={() => setCategory(c.value)}
+                                id={`category-${c.value}`}
                             >
                                 {c.label}
                             </button>
@@ -118,23 +137,26 @@ export default function Feedback() {
                         className="input"
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
-                        placeholder={`Enter the ${category} name...`}
+                        placeholder={`What ${category} would you like to review?`}
                         required
                     />
                 </div>
 
                 {/* Rating */}
                 <div className="input-group">
-                    <label>Rating</label>
+                    <label>How would you rate it?</label>
                     <div className="rating-input">
                         {[1, 2, 3, 4, 5].map((star) => (
                             <span
                                 key={star}
-                                className={`rating-star ${star <= (hoverRating || rating) ? 'filled' : ''
-                                    }`}
+                                className={`rating-star ${star <= (hoverRating || rating) ? 'filled' : ''}`}
                                 onClick={() => setRating(star)}
                                 onMouseEnter={() => setHoverRating(star)}
                                 onMouseLeave={() => setHoverRating(0)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => e.key === 'Enter' && setRating(star)}
+                                aria-label={`Rate ${star} out of 5`}
                             >
                                 {star <= (hoverRating || rating) ? (
                                     <HiStar />
@@ -160,13 +182,15 @@ export default function Feedback() {
 
                 {/* Comments */}
                 <div className="input-group">
-                    <label htmlFor="fb-comments">Comments (optional)</label>
+                    <label htmlFor="fb-comments">
+                        Anything else you'd like to share? (optional)
+                    </label>
                     <textarea
                         id="fb-comments"
                         className="input"
                         value={comments}
                         onChange={(e) => setComments(e.target.value)}
-                        placeholder="Share your detailed feedback..."
+                        placeholder="Tell us more… we're all ears! 👂"
                         rows={4}
                     />
                 </div>
@@ -176,11 +200,12 @@ export default function Feedback() {
                     className="btn btn-primary btn-lg"
                     disabled={loading}
                     style={{ width: '100%' }}
+                    id="feedback-submit-btn"
                 >
                     {loading ? (
                         <>
                             <div className="spinner" />
-                            Submitting...
+                            Submitting…
                         </>
                     ) : (
                         '✨ Submit Feedback'

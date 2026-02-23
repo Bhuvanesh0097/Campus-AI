@@ -39,11 +39,11 @@ export default function AdminDashboard() {
             <div className="dashboard">
                 <div className="page-header">
                     <h1>📊 Analytics Dashboard</h1>
-                    <p>Loading analytics data...</p>
+                    <p>Loading your analytics…</p>
                 </div>
                 <div className="stats-grid">
                     {[1, 2, 3, 4].map((i) => (
-                        <div key={i} className="glass-card stat-card">
+                        <div key={i} className="stat-card">
                             <div className="skeleton" style={{ width: '60px', height: '40px', margin: '0 auto 8px' }} />
                             <div className="skeleton" style={{ width: '100px', height: '16px', margin: '0 auto' }} />
                         </div>
@@ -59,8 +59,8 @@ export default function AdminDashboard() {
                 <div className="page-header">
                     <h1>📊 Analytics Dashboard</h1>
                 </div>
-                <div className="glass-card" style={{ padding: '32px', textAlign: 'center' }}>
-                    <p style={{ color: 'var(--danger)' }}>⚠️ {error}</p>
+                <div className="card" style={{ padding: '32px', textAlign: 'center' }}>
+                    <p style={{ color: 'var(--error)' }}>⚠️ {error}</p>
                     <p style={{ color: 'var(--text-secondary)', marginTop: '8px', fontSize: '0.85rem' }}>
                         You may need admin privileges to view analytics.
                     </p>
@@ -82,13 +82,13 @@ export default function AdminDashboard() {
                     sentimentData.negative || 0,
                 ],
                 backgroundColor: [
-                    'rgba(16, 185, 129, 0.8)',
-                    'rgba(108, 99, 255, 0.8)',
-                    'rgba(239, 68, 68, 0.8)',
+                    'rgba(34, 197, 94, 0.75)',
+                    'rgba(91, 141, 239, 0.75)',
+                    'rgba(239, 68, 68, 0.75)',
                 ],
                 borderColor: [
-                    'rgba(16, 185, 129, 1)',
-                    'rgba(108, 99, 255, 1)',
+                    'rgba(34, 197, 94, 1)',
+                    'rgba(91, 141, 239, 1)',
                     'rgba(239, 68, 68, 1)',
                 ],
                 borderWidth: 2,
@@ -104,16 +104,16 @@ export default function AdminDashboard() {
             {
                 label: 'Responses',
                 data: Object.values(categoryData).map((v) => v.count),
-                backgroundColor: 'rgba(108, 99, 255, 0.6)',
-                borderColor: 'rgba(108, 99, 255, 1)',
+                backgroundColor: 'rgba(91, 141, 239, 0.6)',
+                borderColor: 'rgba(91, 141, 239, 1)',
                 borderWidth: 1,
                 borderRadius: 8,
             },
             {
                 label: 'Avg Rating',
                 data: Object.values(categoryData).map((v) => v.average_rating),
-                backgroundColor: 'rgba(0, 217, 255, 0.6)',
-                borderColor: 'rgba(0, 217, 255, 1)',
+                backgroundColor: 'rgba(143, 214, 198, 0.6)',
+                borderColor: 'rgba(143, 214, 198, 1)',
                 borderWidth: 1,
                 borderRadius: 8,
             },
@@ -127,11 +127,11 @@ export default function AdminDashboard() {
             {
                 label: 'Avg Rating',
                 data: timelineData.map((t) => t.average_rating),
-                borderColor: 'rgba(108, 99, 255, 1)',
-                backgroundColor: 'rgba(108, 99, 255, 0.1)',
+                borderColor: 'rgba(91, 141, 239, 1)',
+                backgroundColor: 'rgba(91, 141, 239, 0.08)',
                 tension: 0.4,
                 fill: true,
-                pointBackgroundColor: 'rgba(108, 99, 255, 1)',
+                pointBackgroundColor: 'rgba(91, 141, 239, 1)',
             },
         ],
     };
@@ -141,17 +141,20 @@ export default function AdminDashboard() {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                labels: { color: '#A0A0B8', font: { family: 'Inter' } },
+                labels: {
+                    color: '#6B7280',
+                    font: { family: 'Inter', size: 12 },
+                },
             },
         },
         scales: {
             x: {
-                ticks: { color: '#6B6B80' },
-                grid: { color: 'rgba(255,255,255,0.05)' },
+                ticks: { color: '#9CA3AF', font: { family: 'Inter' } },
+                grid: { color: 'rgba(0, 0, 0, 0.04)' },
             },
             y: {
-                ticks: { color: '#6B6B80' },
-                grid: { color: 'rgba(255,255,255,0.05)' },
+                ticks: { color: '#9CA3AF', font: { family: 'Inter' } },
+                grid: { color: 'rgba(0, 0, 0, 0.04)' },
             },
         },
     };
@@ -165,19 +168,19 @@ export default function AdminDashboard() {
 
             {/* Stats Cards */}
             <div className="stats-grid">
-                <div className="glass-card stat-card">
+                <div className="stat-card">
                     <div className="stat-value">{summary?.total_responses || 0}</div>
                     <div className="stat-label">Total Responses</div>
                 </div>
-                <div className="glass-card stat-card">
+                <div className="stat-card">
                     <div className="stat-value">{summary?.average_rating || 0}</div>
                     <div className="stat-label">Average Rating</div>
                 </div>
-                <div className="glass-card stat-card">
+                <div className="stat-card">
                     <div className="stat-value">{sentimentData.positive || 0}</div>
                     <div className="stat-label">Positive Reviews</div>
                 </div>
-                <div className="glass-card stat-card">
+                <div className="stat-card">
                     <div className="stat-value">{Object.keys(categoryData).length}</div>
                     <div className="stat-label">Categories</div>
                 </div>
@@ -185,7 +188,7 @@ export default function AdminDashboard() {
 
             {/* Charts */}
             <div className="chart-grid">
-                <div className="glass-card chart-card">
+                <div className="chart-card">
                     <h3>Sentiment Distribution</h3>
                     <div style={{ height: '280px', display: 'flex', justifyContent: 'center' }}>
                         <Pie
@@ -196,7 +199,11 @@ export default function AdminDashboard() {
                                 plugins: {
                                     legend: {
                                         position: 'bottom',
-                                        labels: { color: '#A0A0B8', font: { family: 'Inter' }, padding: 16 },
+                                        labels: {
+                                            color: '#6B7280',
+                                            font: { family: 'Inter', size: 12 },
+                                            padding: 16,
+                                        },
                                     },
                                 },
                             }}
@@ -204,7 +211,7 @@ export default function AdminDashboard() {
                     </div>
                 </div>
 
-                <div className="glass-card chart-card">
+                <div className="chart-card">
                     <h3>Responses by Category</h3>
                     <div style={{ height: '280px' }}>
                         <Bar data={barData} options={chartOptions} />
@@ -213,7 +220,7 @@ export default function AdminDashboard() {
             </div>
 
             {timelineData.length > 0 && (
-                <div className="glass-card chart-card" style={{ marginBottom: '24px' }}>
+                <div className="chart-card" style={{ marginBottom: '24px' }}>
                     <h3>Ratings Over Time</h3>
                     <div style={{ height: '250px' }}>
                         <Line data={lineData} options={chartOptions} />
@@ -222,11 +229,11 @@ export default function AdminDashboard() {
             )}
 
             {/* Recent Feedback */}
-            <div className="glass-card recent-feedback">
+            <div className="recent-feedback">
                 <h3>Recent Feedback</h3>
                 {(summary?.recent_feedback || []).length === 0 ? (
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                        No feedback submitted yet.
+                        No feedback submitted yet. Check back later!
                     </p>
                 ) : (
                     (summary?.recent_feedback || []).map((fb) => (
