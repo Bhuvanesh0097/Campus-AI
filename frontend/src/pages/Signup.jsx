@@ -47,15 +47,25 @@ export default function Signup() {
         return (
             <div className="auth-page">
                 <div className="auth-card glass-card" style={{ textAlign: 'center' }}>
-                    <div className="success-illustration">
-                        <div className="success-icon-circle">
-                            <span>🎉</span>
+                    <div style={{ marginBottom: '16px' }}>
+                        <div style={{
+                            width: '80px',
+                            height: '80px',
+                            borderRadius: '50%',
+                            background: 'var(--success-pale)',
+                            border: '2px solid var(--success)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '2.2rem',
+                            animation: 'float 3s ease-in-out infinite',
+                        }}>
+                            🎉
                         </div>
                     </div>
                     <h1 style={{ marginTop: '20px' }}>You're all set!</h1>
                     <p className="subtitle">
                         Check your email for a confirmation link, then come back and sign in.
-                        We can't wait to help you learn!
                     </p>
                     <Link
                         to="/login"
@@ -65,26 +75,6 @@ export default function Signup() {
                         Go to Login
                     </Link>
                 </div>
-
-                <style>{`
-                    .success-illustration {
-                        display: flex;
-                        justify-content: center;
-                    }
-
-                    .success-icon-circle {
-                        width: 80px;
-                        height: 80px;
-                        border-radius: var(--radius-full);
-                        background: var(--success-pale);
-                        border: 2px solid var(--success);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 2.2rem;
-                        animation: float 3s ease-in-out infinite;
-                    }
-                `}</style>
             </div>
         );
     }
@@ -142,7 +132,7 @@ export default function Signup() {
                                 className="input auth-input"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Enter your email, we'll keep it safe 🙂"
+                                placeholder="Your email address"
                                 required
                                 autoComplete="email"
                             />
@@ -161,7 +151,7 @@ export default function Signup() {
                                 className="input auth-input"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Your secret password (min 6 chars)"
+                                placeholder="Min 6 characters"
                                 required
                                 autoComplete="new-password"
                             />
@@ -215,7 +205,6 @@ export default function Signup() {
                     width: 100%;
                 }
 
-                .auth-input:focus + .auth-input-icon,
                 .auth-input-wrapper:focus-within .auth-input-icon {
                     color: var(--primary);
                 }

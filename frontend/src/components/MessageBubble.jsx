@@ -64,7 +64,7 @@ export default function MessageBubble({ role, content, timestamp }) {
                     height: 34px;
                     border-radius: var(--radius-full);
                     background: linear-gradient(135deg, var(--primary-pale), var(--accent-pale));
-                    border: 1.5px solid var(--accent);
+                    border: 1px solid rgba(124, 156, 255, 0.15);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -88,13 +88,13 @@ export default function MessageBubble({ role, content, timestamp }) {
 
                 .user .msg-content {
                     background: var(--primary);
-                    color: white;
+                    color: var(--text-inverse);
                     border-radius: 20px 20px 4px 20px;
-                    box-shadow: 0 2px 8px rgba(91, 141, 239, 0.2);
+                    box-shadow: var(--shadow-primary);
                 }
 
                 .assistant .msg-content {
-                    background: var(--bg-surface);
+                    background: var(--bg-elevated);
                     border: 1px solid var(--border);
                     color: var(--text-primary);
                     border-radius: 20px 20px 20px 4px;
@@ -145,14 +145,14 @@ export default function MessageBubble({ role, content, timestamp }) {
                 }
 
                 .code-block {
-                    background: #1E293B;
+                    background: #0D1117;
                     color: #E2E8F0;
                     padding: 14px 16px;
                     border-radius: var(--radius-sm);
                     overflow-x: auto;
                     margin: 10px 0;
                     font-size: 0.83rem;
-                    border: 1px solid #334155;
+                    border: 1px solid var(--border);
                 }
 
                 .code-block code {
@@ -171,7 +171,18 @@ export default function MessageBubble({ role, content, timestamp }) {
 
                 @media (max-width: 768px) {
                     .message-bubble {
-                        max-width: 90%;
+                        max-width: 88%;
+                    }
+
+                    .msg-content {
+                        padding: 10px 14px;
+                        font-size: 0.87rem;
+                    }
+
+                    .msg-avatar {
+                        width: 28px;
+                        height: 28px;
+                        font-size: 0.75rem;
                     }
                 }
             `}</style>

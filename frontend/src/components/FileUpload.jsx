@@ -25,11 +25,8 @@ export default function FileUpload({
         e.preventDefault();
         e.stopPropagation();
         setDragActive(false);
-
         const files = e.dataTransfer.files;
-        if (files?.[0]) {
-            onUpload(files[0]);
-        }
+        if (files?.[0]) onUpload(files[0]);
     };
 
     const handleChange = (e) => {
@@ -107,12 +104,11 @@ export default function FileUpload({
                     border-color: var(--accent);
                     background: var(--accent-pale);
                     transform: scale(1.01);
-                    box-shadow: 0 0 0 4px rgba(143, 214, 198, 0.15);
                 }
 
                 .file-upload-zone.uploading {
                     cursor: not-allowed;
-                    opacity: 0.8;
+                    opacity: 0.7;
                 }
 
                 .upload-icon-wrapper {
@@ -138,7 +134,7 @@ export default function FileUpload({
                 }
 
                 .drag-active .upload-icon {
-                    color: var(--accent-hover);
+                    color: var(--accent);
                 }
 
                 .upload-title {
@@ -150,6 +146,12 @@ export default function FileUpload({
                 .upload-subtitle {
                     font-size: 0.8rem;
                     color: var(--text-muted);
+                }
+
+                @media (max-width: 768px) {
+                    .file-upload-zone {
+                        padding: 20px 16px;
+                    }
                 }
             `}</style>
         </div>

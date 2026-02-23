@@ -82,14 +82,14 @@ export default function AdminDashboard() {
                     sentimentData.negative || 0,
                 ],
                 backgroundColor: [
-                    'rgba(34, 197, 94, 0.75)',
-                    'rgba(91, 141, 239, 0.75)',
-                    'rgba(239, 68, 68, 0.75)',
+                    'rgba(52, 211, 153, 0.75)',
+                    'rgba(124, 156, 255, 0.75)',
+                    'rgba(248, 113, 113, 0.75)',
                 ],
                 borderColor: [
-                    'rgba(34, 197, 94, 1)',
-                    'rgba(91, 141, 239, 1)',
-                    'rgba(239, 68, 68, 1)',
+                    'rgba(52, 211, 153, 1)',
+                    'rgba(124, 156, 255, 1)',
+                    'rgba(248, 113, 113, 1)',
                 ],
                 borderWidth: 2,
             },
@@ -104,16 +104,16 @@ export default function AdminDashboard() {
             {
                 label: 'Responses',
                 data: Object.values(categoryData).map((v) => v.count),
-                backgroundColor: 'rgba(91, 141, 239, 0.6)',
-                borderColor: 'rgba(91, 141, 239, 1)',
+                backgroundColor: 'rgba(124, 156, 255, 0.6)',
+                borderColor: 'rgba(124, 156, 255, 1)',
                 borderWidth: 1,
                 borderRadius: 8,
             },
             {
                 label: 'Avg Rating',
                 data: Object.values(categoryData).map((v) => v.average_rating),
-                backgroundColor: 'rgba(143, 214, 198, 0.6)',
-                borderColor: 'rgba(143, 214, 198, 1)',
+                backgroundColor: 'rgba(34, 211, 238, 0.5)',
+                borderColor: 'rgba(34, 211, 238, 1)',
                 borderWidth: 1,
                 borderRadius: 8,
             },
@@ -127,11 +127,11 @@ export default function AdminDashboard() {
             {
                 label: 'Avg Rating',
                 data: timelineData.map((t) => t.average_rating),
-                borderColor: 'rgba(91, 141, 239, 1)',
-                backgroundColor: 'rgba(91, 141, 239, 0.08)',
+                borderColor: 'rgba(124, 156, 255, 1)',
+                backgroundColor: 'rgba(124, 156, 255, 0.06)',
                 tension: 0.4,
                 fill: true,
-                pointBackgroundColor: 'rgba(91, 141, 239, 1)',
+                pointBackgroundColor: 'rgba(124, 156, 255, 1)',
             },
         ],
     };
@@ -142,19 +142,19 @@ export default function AdminDashboard() {
         plugins: {
             legend: {
                 labels: {
-                    color: '#6B7280',
+                    color: '#9CA3AF',
                     font: { family: 'Inter', size: 12 },
                 },
             },
         },
         scales: {
             x: {
-                ticks: { color: '#9CA3AF', font: { family: 'Inter' } },
-                grid: { color: 'rgba(0, 0, 0, 0.04)' },
+                ticks: { color: '#6B7280', font: { family: 'Inter' } },
+                grid: { color: 'rgba(255, 255, 255, 0.04)' },
             },
             y: {
-                ticks: { color: '#9CA3AF', font: { family: 'Inter' } },
-                grid: { color: 'rgba(0, 0, 0, 0.04)' },
+                ticks: { color: '#6B7280', font: { family: 'Inter' } },
+                grid: { color: 'rgba(255, 255, 255, 0.04)' },
             },
         },
     };

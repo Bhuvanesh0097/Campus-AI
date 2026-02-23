@@ -1,10 +1,6 @@
 import { useAuth } from '../context/AuthContext';
-import {
-    HiOutlineSparkles,
-    HiOutlineBars3,
-    HiOutlineArrowRightOnRectangle,
-} from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
+import { HiOutlineBars3, HiOutlineArrowRightOnRectangle, HiOutlineSparkles } from 'react-icons/hi2';
 
 export default function Navbar({ onToggleSidebar }) {
     const { user, signOut } = useAuth();
@@ -15,39 +11,38 @@ export default function Navbar({ onToggleSidebar }) {
         navigate('/login');
     };
 
-    const displayName =
-        user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'User';
+    const displayName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'User';
     const initials = displayName.charAt(0).toUpperCase();
 
     return (
-        <header className="navbar" role="banner">
-            <div className="navbar-left">
+        <nav className="navbar" role="navigation" aria-label="Main navigation">
+            <div className="nav-left">
                 <button
-                    className="navbar-toggle"
+                    className="nav-mobile-toggle"
                     onClick={onToggleSidebar}
                     aria-label="Toggle sidebar"
                     id="sidebar-toggle"
                 >
                     <HiOutlineBars3 />
                 </button>
-                <div className="navbar-brand">
-                    <div className="navbar-logo-icon">
+                <div className="nav-brand">
+                    <div className="nav-logo">
                         <HiOutlineSparkles />
                     </div>
-                    <span className="navbar-logo-text">CampusAI</span>
+                    <span className="nav-title">CampusAI</span>
                 </div>
             </div>
 
-            <div className="navbar-right">
-                <div className="navbar-user" id="navbar-user-profile">
-                    <div className="navbar-avatar">{initials}</div>
-                    <span className="navbar-username">{displayName}</span>
+            <div className="nav-right">
+                <div className="nav-user">
+                    <div className="nav-avatar">{initials}</div>
+                    <span className="nav-username">{displayName}</span>
                 </div>
                 <button
-                    className="navbar-signout"
+                    className="nav-signout"
                     onClick={handleSignOut}
-                    title="Sign out"
                     aria-label="Sign out"
+                    title="Sign out"
                     id="signout-btn"
                 >
                     <HiOutlineArrowRightOnRectangle />
@@ -65,125 +60,107 @@ export default function Navbar({ onToggleSidebar }) {
                     align-items: center;
                     justify-content: space-between;
                     padding: 0 24px;
-                    background: rgba(255, 255, 255, 0.85);
+                    background: rgba(17, 24, 39, 0.85);
                     backdrop-filter: blur(12px);
                     -webkit-backdrop-filter: blur(12px);
                     border-bottom: 1px solid var(--border);
-                    z-index: 90;
+                    z-index: 800;
                     transition: left var(--transition-base);
                 }
 
-                .navbar-left {
+                .nav-left {
                     display: flex;
                     align-items: center;
                     gap: 12px;
                 }
 
-                .navbar-toggle {
+                .nav-mobile-toggle {
                     display: none;
-                    width: 40px;
-                    height: 40px;
+                    width: 38px;
+                    height: 38px;
+                    border-radius: var(--radius-sm);
                     align-items: center;
                     justify-content: center;
-                    border-radius: var(--radius-sm);
                     font-size: 1.3rem;
                     color: var(--text-secondary);
                     transition: all var(--transition-fast);
-                    cursor: pointer;
-                    background: none;
-                    border: none;
                 }
 
-                .navbar-toggle:hover {
-                    background: var(--bg-muted);
+                .nav-mobile-toggle:hover {
+                    background: var(--bg-elevated);
                     color: var(--text-primary);
                 }
 
-                .navbar-brand {
-                    display: none;
+                .nav-brand {
+                    display: flex;
                     align-items: center;
                     gap: 10px;
                 }
 
-                .navbar-logo-icon {
-                    width: 36px;
-                    height: 36px;
-                    background: linear-gradient(135deg, var(--primary), var(--accent));
+                .nav-logo {
+                    width: 34px;
+                    height: 34px;
                     border-radius: var(--radius-sm);
+                    background: var(--primary-pale);
+                    border: 1px solid rgba(124, 156, 255, 0.15);
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 1.1rem;
-                    color: white;
+                    font-size: 1rem;
+                    color: var(--primary);
                 }
 
-                .navbar-logo-text {
-                    font-size: 1.1rem;
+                .nav-title {
+                    font-size: 1.05rem;
                     font-weight: 700;
                     color: var(--text-primary);
-                    letter-spacing: -0.01em;
+                    letter-spacing: -0.3px;
                 }
 
-                .navbar-right {
+                .nav-right {
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    gap: 12px;
                 }
 
-                .navbar-user {
+                .nav-user {
                     display: flex;
                     align-items: center;
-                    gap: 10px;
-                    padding: 6px 12px 6px 6px;
-                    border-radius: var(--radius-full);
-                    background: var(--bg-muted);
-                    transition: all var(--transition-fast);
+                    gap: 8px;
                 }
 
-                .navbar-user:hover {
-                    background: var(--border);
-                }
-
-                .navbar-avatar {
+                .nav-avatar {
                     width: 32px;
                     height: 32px;
                     border-radius: var(--radius-full);
                     background: linear-gradient(135deg, var(--primary), var(--accent));
+                    color: var(--text-inverse);
+                    font-size: 0.8rem;
+                    font-weight: 700;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 0.8rem;
-                    font-weight: 700;
-                    color: white;
-                    flex-shrink: 0;
                 }
 
-                .navbar-username {
+                .nav-username {
                     font-size: 0.85rem;
                     font-weight: 500;
                     color: var(--text-primary);
-                    max-width: 120px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
                 }
 
-                .navbar-signout {
-                    width: 36px;
-                    height: 36px;
+                .nav-signout {
+                    width: 34px;
+                    height: 34px;
+                    border-radius: var(--radius-sm);
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    border-radius: var(--radius-sm);
+                    font-size: 1.1rem;
                     color: var(--text-muted);
-                    font-size: 1.15rem;
                     transition: all var(--transition-fast);
-                    cursor: pointer;
-                    background: none;
-                    border: none;
                 }
 
-                .navbar-signout:hover {
+                .nav-signout:hover {
                     background: var(--error-pale);
                     color: var(--error);
                 }
@@ -194,19 +171,20 @@ export default function Navbar({ onToggleSidebar }) {
                         padding: 0 16px;
                     }
 
-                    .navbar-toggle {
+                    .nav-mobile-toggle {
                         display: flex;
                     }
 
-                    .navbar-brand {
-                        display: flex;
+                    .nav-brand .nav-logo,
+                    .nav-brand .nav-title {
+                        display: none;
                     }
 
-                    .navbar-username {
+                    .nav-username {
                         display: none;
                     }
                 }
             `}</style>
-        </header>
+        </nav>
     );
 }

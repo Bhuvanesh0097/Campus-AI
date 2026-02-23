@@ -82,7 +82,7 @@ export default function Login() {
                                 className="input auth-input"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Enter your email, we'll keep it safe 🙂"
+                                placeholder="Enter your email"
                                 required={configured}
                                 autoComplete="email"
                             />
@@ -101,7 +101,7 @@ export default function Login() {
                                 className="input auth-input"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Your secret password"
+                                placeholder="Your password"
                                 required={configured}
                                 autoComplete="current-password"
                             />
@@ -140,7 +140,7 @@ export default function Login() {
                     gap: 12px;
                     padding: 14px 16px;
                     background: var(--warning-pale);
-                    border: 1px solid rgba(245, 158, 11, 0.2);
+                    border: 1px solid rgba(251, 191, 36, 0.15);
                     border-radius: var(--radius-sm);
                     margin-bottom: 8px;
                     font-size: 0.85rem;
@@ -158,7 +158,7 @@ export default function Login() {
                     font-weight: 600;
                     display: block;
                     margin-bottom: 2px;
-                    color: #92400E;
+                    color: var(--warning);
                 }
 
                 .demo-notice p {
@@ -190,7 +190,6 @@ export default function Login() {
                     width: 100%;
                 }
 
-                .auth-input:focus + .auth-input-icon,
                 .auth-input-wrapper:focus-within .auth-input-icon {
                     color: var(--primary);
                 }

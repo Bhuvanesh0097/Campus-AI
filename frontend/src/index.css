@@ -1,66 +1,65 @@
 /* ===================================================
-   CampusAI — Design System v2
-   Warm, human, premium light-mode UI
-   "A friendly messaging app crafted by humans"
+   CampusAI — Design System v3
+   Premium Dark Mode UI
    =================================================== */
 
 :root {
   /* ─── Brand Colors ─── */
-  --primary: #5B8DEF;
-  --primary-hover: #4A7BE0;
-  --primary-light: #7BA5F5;
-  --primary-pale: rgba(91, 141, 239, 0.08);
-  --primary-glow: rgba(91, 141, 239, 0.25);
+  --primary: #7C9CFF;
+  --primary-hover: #6B8CFF;
+  --primary-dark: #5A7AEE;
+  --primary-pale: rgba(124, 156, 255, 0.1);
+  --primary-glow: rgba(124, 156, 255, 0.25);
 
-  --accent: #8FD6C6;
-  --accent-hover: #72CBBA;
-  --accent-pale: rgba(143, 214, 198, 0.12);
+  --accent: #22D3EE;
+  --accent-hover: #06B6D4;
+  --accent-pale: rgba(34, 211, 238, 0.1);
 
   /* ─── Semantic Colors ─── */
-  --success: #22C55E;
-  --success-pale: rgba(34, 197, 94, 0.1);
-  --error: #EF4444;
-  --error-pale: rgba(239, 68, 68, 0.08);
-  --warning: #F59E0B;
-  --warning-pale: rgba(245, 158, 11, 0.1);
+  --success: #34D399;
+  --success-pale: rgba(52, 211, 153, 0.1);
+  --error: #F87171;
+  --error-pale: rgba(248, 113, 113, 0.1);
+  --warning: #FBBF24;
+  --warning-pale: rgba(251, 191, 36, 0.1);
 
   /* ─── Background System ─── */
-  --bg-body: #F7F9FC;
-  --bg-surface: #FFFFFF;
-  --bg-surface-raised: #FFFFFF;
-  --bg-muted: #F1F4F9;
-  --bg-input: #F7F9FC;
+  --bg-body: #0F172A;
+  --bg-surface: #111827;
+  --bg-elevated: #1F2937;
+  --bg-muted: #1E293B;
+  --bg-input: #1E293B;
+  --bg-hover: #263348;
 
   /* ─── Text ─── */
-  --text-primary: #1F2937;
-  --text-secondary: #6B7280;
-  --text-muted: #9CA3AF;
-  --text-accent: #5B8DEF;
-  --text-inverse: #FFFFFF;
+  --text-primary: #E5E7EB;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --text-accent: #7C9CFF;
+  --text-inverse: #0F172A;
 
   /* ─── Borders ─── */
-  --border: #E5E7EB;
-  --border-hover: #D1D5DB;
-  --border-focus: #5B8DEF;
+  --border: #374151;
+  --border-hover: #4B5563;
+  --border-focus: #7C9CFF;
 
   /* ─── Shadows ─── */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
-  --shadow-xl: 0 20px 50px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-  --shadow-primary: 0 4px 14px rgba(91, 141, 239, 0.3);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 50px -5px rgba(0, 0, 0, 0.6);
+  --shadow-primary: 0 4px 14px rgba(124, 156, 255, 0.2);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.03);
 
   /* ─── Spacing ─── */
-  --sidebar-width: 280px;
-  --navbar-height: 64px;
+  --sidebar-width: 260px;
+  --navbar-height: 60px;
 
   /* ─── Transitions ─── */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* ─── Border Radius ─── */
   --radius-xs: 6px;
@@ -97,16 +96,17 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Subtle warm gradient overlay */
+/* Subtle gradient overlay */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse at 15% 10%, rgba(91, 141, 239, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 85% 80%, rgba(143, 214, 198, 0.05) 0%, transparent 50%);
+    radial-gradient(ellipse at 15% 10%, rgba(124, 156, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(34, 211, 238, 0.03) 0%, transparent 50%);
   z-index: -1;
   pointer-events: none;
 }
@@ -138,8 +138,8 @@ select {
 
 /* ===== Scrollbar ===== */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -155,7 +155,7 @@ select {
   background: var(--border-hover);
 }
 
-/* ===== Focus Ring (Accessibility) ===== */
+/* ===== Focus Ring ===== */
 *:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
@@ -163,20 +163,7 @@ select {
 }
 
 /* ===== Card ===== */
-.card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
-  transition: all var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--border-hover);
-}
-
-/* Glass card — kept for legacy class name compat */
+.card,
 .glass-card {
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -185,9 +172,10 @@ select {
   transition: all var(--transition-base);
 }
 
+.card:hover,
 .glass-card:hover {
-  box-shadow: var(--shadow-md);
   border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
 }
 
 /* ===== Buttons ===== */
@@ -207,7 +195,7 @@ select {
 }
 
 .btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -221,23 +209,21 @@ select {
 .btn-primary:hover:not(:disabled) {
   background: var(--primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(91, 141, 239, 0.35);
+  box-shadow: 0 6px 20px rgba(124, 156, 255, 0.3);
 }
 
 .btn-primary:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: var(--shadow-primary);
 }
 
 .btn-secondary {
-  background: var(--bg-surface);
+  background: var(--bg-elevated);
   color: var(--text-primary);
   border-color: var(--border);
-  box-shadow: var(--shadow-xs);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: var(--bg-muted);
+  background: var(--bg-hover);
   border-color: var(--border-hover);
 }
 
@@ -247,27 +233,18 @@ select {
 }
 
 .btn-ghost:hover:not(:disabled) {
-  background: var(--bg-muted);
+  background: var(--bg-elevated);
   color: var(--text-primary);
 }
 
 .btn-danger {
   background: var(--error-pale);
   color: var(--error);
-  border-color: rgba(239, 68, 68, 0.2);
+  border-color: rgba(248, 113, 113, 0.2);
 }
 
 .btn-danger:hover:not(:disabled) {
-  background: rgba(239, 68, 68, 0.15);
-}
-
-.btn-accent {
-  background: var(--accent);
-  color: var(--text-primary);
-}
-
-.btn-accent:hover:not(:disabled) {
-  background: var(--accent-hover);
+  background: rgba(248, 113, 113, 0.18);
 }
 
 .btn-sm {
@@ -299,12 +276,7 @@ select {
 .input-group label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-primary);
-}
-
-.input-group .input-hint {
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .input {
@@ -315,6 +287,7 @@ select {
   color: var(--text-primary);
   font-size: 0.9rem;
   transition: all var(--transition-fast);
+  width: 100%;
 }
 
 .input:hover {
@@ -324,7 +297,7 @@ select {
 .input:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-glow);
-  background: var(--bg-surface);
+  background: var(--bg-elevated);
 }
 
 .input::placeholder {
@@ -339,7 +312,7 @@ textarea.input {
 select.input {
   appearance: none;
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   padding-right: 40px;
@@ -430,18 +403,6 @@ select.input {
   }
 }
 
-@keyframes bounce {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
 @keyframes typing {
 
   0%,
@@ -478,19 +439,9 @@ select.input {
   }
 }
 
-@keyframes wiggle {
-
-  0%,
-  100% {
-    transform: rotate(0);
-  }
-
-  25% {
-    transform: rotate(-3deg);
-  }
-
-  75% {
-    transform: rotate(3deg);
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -504,10 +455,7 @@ select.input {
 
 /* ===== Loading States ===== */
 .skeleton {
-  background: linear-gradient(90deg,
-      var(--bg-muted) 25%,
-      var(--border) 50%,
-      var(--bg-muted) 75%);
+  background: linear-gradient(90deg, var(--bg-elevated) 25%, var(--border) 50%, var(--bg-elevated) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-sm);
@@ -520,12 +468,6 @@ select.input {
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 /* ===== Badge ===== */
@@ -561,7 +503,7 @@ select.input {
 
 .badge-accent {
   background: var(--accent-pale);
-  color: #3DA893;
+  color: var(--accent);
 }
 
 /* ===== Stars Rating ===== */
@@ -579,7 +521,6 @@ select.input {
 
 .stars .star.active {
   color: var(--warning);
-  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.3));
 }
 
 .stars .star:hover {
@@ -601,5 +542,15 @@ select.input {
   :root {
     --sidebar-width: 0px;
     --navbar-height: 56px;
+  }
+
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
   }
 }

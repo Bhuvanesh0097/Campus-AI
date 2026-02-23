@@ -24,7 +24,7 @@ export default function TypingIndicator() {
                     height: 32px;
                     border-radius: var(--radius-full);
                     background: linear-gradient(135deg, var(--primary-pale), var(--accent-pale));
-                    border: 1.5px solid var(--accent);
+                    border: 1px solid rgba(124, 156, 255, 0.15);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -37,7 +37,7 @@ export default function TypingIndicator() {
                     display: flex;
                     gap: 5px;
                     padding: 14px 18px;
-                    background: var(--bg-muted);
+                    background: var(--bg-elevated);
                     border: 1px solid var(--border);
                     border-radius: 18px 18px 18px 4px;
                 }

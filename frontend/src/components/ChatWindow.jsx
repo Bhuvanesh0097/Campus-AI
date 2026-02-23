@@ -6,9 +6,9 @@ import { HiOutlinePaperAirplane } from 'react-icons/hi2';
 export default function ChatWindow({
   messages = [],
   onSendMessage,
-  placeholder = "Ask me anything… I'm listening",
+  placeholder = "Ask me anything…",
   loading = false,
-  emptyMessage = "It's quiet here… start the first message!",
+  emptyMessage = "Start the first message!",
   emptyIcon = '💬',
 }) {
   const [input, setInput] = useState('');
@@ -24,7 +24,6 @@ export default function ChatWindow({
     if (!input.trim() || loading) return;
     onSendMessage(input.trim());
     setInput('');
-    // Focus back on input
     inputRef.current?.focus();
   };
 
@@ -119,7 +118,6 @@ export default function ChatWindow({
                     scroll-behavior: smooth;
                 }
 
-                /* ─── Empty State ─── */
                 .chat-empty {
                     flex: 1;
                     display: flex;
@@ -144,6 +142,7 @@ export default function ChatWindow({
                     height: 80px;
                     border-radius: var(--radius-full);
                     background: linear-gradient(135deg, var(--primary-pale) 0%, var(--accent-pale) 100%);
+                    border: 1px solid rgba(124, 156, 255, 0.15);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -183,7 +182,6 @@ export default function ChatWindow({
                     line-height: 1.5;
                 }
 
-                /* ─── Input Bar ─── */
                 .chat-input-bar {
                     padding: 16px 20px;
                     border-top: 1px solid var(--border);
@@ -204,7 +202,7 @@ export default function ChatWindow({
                 .chat-input-wrapper:focus-within {
                     border-color: var(--primary);
                     box-shadow: 0 0 0 3px var(--primary-glow);
-                    background: var(--bg-surface);
+                    background: var(--bg-elevated);
                 }
 
                 .chat-input {
@@ -215,6 +213,7 @@ export default function ChatWindow({
                     color: var(--text-primary);
                     font-size: 0.9rem;
                     outline: none;
+                    min-width: 0;
                 }
 
                 .chat-input::placeholder {
@@ -226,7 +225,7 @@ export default function ChatWindow({
                     height: 40px;
                     border-radius: var(--radius-full);
                     background: var(--primary);
-                    color: white;
+                    color: var(--text-inverse);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -235,13 +234,12 @@ export default function ChatWindow({
                     flex-shrink: 0;
                     cursor: pointer;
                     border: none;
-                    box-shadow: 0 2px 8px rgba(91, 141, 239, 0.25);
+                    box-shadow: var(--shadow-primary);
                 }
 
                 .chat-send-btn:hover:not(:disabled) {
                     background: var(--primary-hover);
                     transform: scale(1.05);
-                    box-shadow: 0 4px 12px rgba(91, 141, 239, 0.35);
                 }
 
                 .chat-send-btn:active:not(:disabled) {
@@ -249,20 +247,29 @@ export default function ChatWindow({
                 }
 
                 .chat-send-btn:disabled {
-                    opacity: 0.35;
+                    opacity: 0.3;
                     cursor: not-allowed;
                     box-shadow: none;
                 }
 
                 @media (max-width: 768px) {
                     .chat-messages {
-                        padding: 16px;
+                        padding: 14px;
+                        gap: 12px;
                     }
 
                     .chat-input-bar {
-                        padding: 12px 16px;
-                        position: sticky;
-                        bottom: 0;
+                        padding: 10px 12px;
+                    }
+
+                    .chat-input-wrapper {
+                        padding: 4px 4px 4px 16px;
+                    }
+
+                    .chat-send-btn {
+                        width: 36px;
+                        height: 36px;
+                        font-size: 0.95rem;
                     }
                 }
             `}</style>
