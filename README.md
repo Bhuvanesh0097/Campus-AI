@@ -1,6 +1,6 @@
 # 🤖 CampusAI — Smart College Assistant
 
-A full-stack AI chatbot web app combining **Study Buddy**, **Placement Preparation**, and **Feedback & Analytics** — built with React, FastAPI, Supabase, and Google Gemini.
+A full-stack AI chatbot web app combining **Study Buddy**, **Placement Preparation**, and **Feedback & Analytics** — built with React, FastAPI, Supabase, and Grok API.
 
 ---
 
